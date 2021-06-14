@@ -19,7 +19,20 @@
                                         <tr>
                                             <td>{{$loop-> index+1}}</td>
                                             <td>{{$category->name}}</td>
-                                            <td>Edit | delete</td>
+                                            <td>
+                                                <ul>
+                                                    <li>
+                                                           <a class="btn btn-primary" href="{{route('categories.edit', $category->id) }}">Edit</a>
+                                                    </li>
+                                                    <li>
+                                                        <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
+                                                                 @csrf
+                                                                  @method('delete')
+                                                         <button type="submit" class="btn btn-danger">Delete</button>
+                                                         </form>
+                                                      </li>
+                                                 </ul>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

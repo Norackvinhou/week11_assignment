@@ -9,7 +9,9 @@
                                         <th>#</th>
                                             <th>Name</th>
                                             <th>
+                                        
                                             <a class="btn btn-primary" href="{{route('categories.create')}}">+ new</a>
+                                          
                                             </th>
                                         </tr>
                                     </thead>
@@ -21,9 +23,11 @@
                                             <td>{{$category->name}}</td>
                                             <td>
                                                 <ul>
+                                               
                                                     <li>
                                                            <a class="btn btn-primary" href="{{route('categories.edit', $category->id) }}">Edit</a>
                                                     </li>
+                                               
                                                     <li>
                                                         <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
                                                                  @csrf

@@ -37,3 +37,5 @@ Route::post('login',[App\Http\Controllers\AuthController::class ,'login'])->name
 
 Route::get('register',[App\Http\Controllers\AuthController::class ,'registerForm'])->name('auth.register_form');
 Route::post('register',[App\Http\Controllers\AuthController::class ,'register'])->name('auth.register');
+
+Route::resource('posts',App\Http\Controllers\PostController::class);

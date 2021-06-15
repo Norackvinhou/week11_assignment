@@ -31,17 +31,22 @@
                                             <td>{{ $post-> author->full_name}}</td>
                                             <td>
                                                 <ul>
+                                                @can('updatePost',$post)
                                                     <li>
                                                            <a class="btn btn-primary" href="{{ route('posts.edit', $post->id) }}">Edit</a>
                                                     </li>
+                                                @endcan
+                                                
+                                                @can('deletePost',$post)
                                                     <li>
                                                         <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                                                  @csrf
                                                                   @method('delete')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </li>
-                                    </ul>
+                                                             <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </li>
+                                                @endcan
+                                                </ul>
                                            </td>
                                           
                                         </tr>

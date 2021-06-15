@@ -27,6 +27,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        if(!Gate::allows('store-category'))
+        {
+            abort(403);
+        }
        return view('categories.create');
     }
 
@@ -38,6 +42,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        if(!Gate::allows('store-category'))
+        {
+            abort(403);
+        }
         Category::create($request->all());
         return redirect(route('categories.index'));
     }
@@ -61,6 +69,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        if(!Gate::allows('update-category'))
+        {
+            abort(403);
+        }
         return view('categories.edit', [
             'category' => $category
         ]);
@@ -75,6 +87,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        if(!Gate::allows('update-category'))
+        {
+            abort(403);
+        }
         $category->name = $request->get('name');
         $category->save();
         return redirect(route('categories.index'));
@@ -88,6 +104,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        if(!Gate::allows('destroy-category'))
+        {
+            abort(403);
+        }
         $category->delete();
         return redirect(route('categories.index'));
     }

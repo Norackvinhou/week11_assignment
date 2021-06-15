@@ -6,6 +6,8 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use App\Models\User;
 use App\Models\Post;
+use App\Policies\PostPolicy;
+use Illuminate\Support\Facades\Auth;
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -15,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Post::class=>PostPolicy::class
     ];
 
     /**
@@ -26,14 +29,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('store-categories', function(User $user){
-            return Auth::user()->role === "admin" ; 
-        });
-        Gate::define('update-categories', function(User $user){
-            return Auth::user()->role === "admin" ; 
-        });
-        Gate::define('delete-categories', function(User $user){
-            return Auth::user()->role === "admin" ; 
-        });
+      Gate::define('store-category',function(User $user){
+        return Auth::user()->role === 'admin' ;
+      });
+      Gate::define('update-category',function(User $user){
+        return Auth::user()->role === 'admin' ;
+      });
+      Gate::define('destroy-category',function(User $user){
+        return Auth::user()->role === 'admin' ;
+      });
     }
 }

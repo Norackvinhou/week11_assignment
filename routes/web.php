@@ -29,7 +29,7 @@ Route::get('/register', function () {
 
 
 Route::post('logout',[App\Http\Controllers\AuthController::class ,'logout'])->name('auth.logout');
-
+//route is protected in contorller cuz i dont want to specify every route
 Route::resource('categories',App\Http\Controllers\CategoryController::class);
 
 Route::get('login',[App\Http\Controllers\AuthController::class ,'loginForm'])->name('auth.login_form');

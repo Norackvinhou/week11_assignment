@@ -39,6 +39,10 @@ public function index()
     
     public function edit(Post $post)
     {
+        if(!Gate::allows('updatePost',$post))
+        {
+            abort(403);
+        }
         
         $categories = Category::pluck('name', 'id');
         $categories = Category::get();
@@ -49,6 +53,10 @@ public function index()
     }
     public function update(Request $request, Post $post)
     {
+        if(!Gate::allows('updatePost',$post))
+        {
+            abort(403);
+        }
 
         $post->category_id = $request->get('category_id');
         $post->title=$request->get('title');
@@ -59,6 +67,11 @@ public function index()
 
     public function destroy(Post $post)
     {
+        if(!Gate::allows('deletePost',$post))
+        {
+            abort(403);
+        }
+
         $post->delete();
         return redirect(route('posts.index'));
     }
